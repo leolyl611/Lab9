@@ -1,6 +1,6 @@
 ---
 title: "Lab9"
-author: "Your Name"
+author: "Leo Lu"
 date: "2024-11-07"
 output: "github_document"
 ---
@@ -13,7 +13,7 @@ library(bruceR)
 library(haven)
 
 
-lab9data<-read_sav("C:/Users/Colin/Documents/lab9data.sav")
+lab9data<-read_sav("/Users/leolu/Documents/GitHub/Lab9/lab9data.sav")
 
 
 
@@ -52,16 +52,49 @@ EFA(lab9data, "FSMI", 1:6, rev = 3, method = "pa", plot.scree = TRUE, nfactors =
 # Now test reliability for the status seeking subscale
 ```{r}
 
+Alpha(lab9data, "FSMI", 31:36, rev = 36)
+
+
 ```
 # Q1: What is the Cronbach's alpha of this subscale? Is it a reliable measure of status seeking? Why? 
+
+The Cronbach's alpha of this subscale is 0.83. This is a reliable measure of status seeking, as cronbach's alpha values above 0.8 are good.
 
 # Now run a factor analysis on the Mate Retention (Breakup Concern) subscale
 ```{r}
 
-
+EFA(lab9data, "FSMI", 49:54, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
 
 ```
 
 # Q2: How many factors can you identify from the results? Based on what? What is the range of the factor loadings? What is item that has the highest factor loading? In conclusion, is this a good measure of break up concern and why?
 
+One factor. Factor one is the only factor above the parallel, the only one with an eigenvalue above one, only factor on the slope before the flattened point. 
+The range of the factor loadings is 0.823 to 0.940. 
+Item "51. I worry that my romantic/sexual partner might leave me." has the highest factor loading. 
+In conclusion, this is a good measure of break up concern as all values are above 0.4.
+
 # Q3: Pick another subscale from FSMI. Test reliability and factor analysis. Answer all the questions  above. 
+
+#Kin Care (Family)
+```{r}
+
+Alpha(lab9data, "FSMI", 55:60, rev = c("FSMI56", "FSMI57", "FSMI58"))
+
+EFA(lab9data, "FSMI", 55:60, method = "pa", plot.scree = TRUE, nfactors = c("parallel"))
+
+# Q1: What is the Cronbach's alpha of this subscale? Is it a reliable measure of Kin Care (Family)? Why?
+
+#The Cronbach's alpha is 0.895. This is a good reliable measure of status seeking as the value is above 0.8.
+
+# Q2: How many factors can you identify from the results? Based on what? What is the range of the factor loadings? What is item that has the highest factor loading? In conclusion, is this a good measure of Kin Care (Family) and why?
+
+#One factor can be identified. Only factor 1 has an eigenvalue above 1, only dot located on the slope of the scree plot before the flattened point, as well as the only dot above the parallel.
+#The range of the factor loadings is 0.725-0.822.
+#Item "59. Being close to my family members is extremely important to me." is the highest factor loading
+#Overall, this is a good measure of Kin Care (Family) as all values are above 0.4.
+
+```
+
+
+
